@@ -1,0 +1,97 @@
+﻿@model List<ProductDto>
+
+
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <div>
+            <h2 id="app-header">Choose Your Items</h2>
+        </div>
+        <div></div>
+        <div>
+            <button class="btn btn-primary" id="productGobackButton" onclick="history.back()">Back</button>
+            <button class="btn btn-success" id="cartButton">Enter Customer Info</button>
+            <button type="button" class="btn btn-primary">
+                Items in Cart <span class="badge badge-light" id="basket-item-count">0</span>
+                <span class="sr-only">unread messages</span>
+            </button>
+        </div>
+
+    </div>
+    <hr />
+    <div class="row mt-5" id="productList">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+
+                    <img src="@item.PictureUrl" alt="@item.ProductName" style="width:200px;height:200px" />
+
+                    <div class="card-body">
+                        <p class="card-text">@item.ProductName</p>
+                        <p class="text-muted">@item.BasePrice</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" data-product-id="@item.Id" class="btn btn-sm btn-outline-secondary product">Add Item</button>
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row mt-5" id="customer-details">
+        <div class="container">
+            <div class="jumbotron">
+                <form>
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" class="form-control" id="customerName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-info" id="SaveCustomerButton">View Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5" id="basket">
+        <div id="basket-view">
+
+            <h5>Customer Name : <span id="customer-name" style="text-decoration:solid"></span></h5>
+            <h5>Email Address : <span id="customer-email" style="text-decoration:solid"></span></h5>
+            <h5>Address : <span id="customer-address" style="text-decoration:solid"></span></h5>
+            <h5 id="customer-email"></h5>
+            <h5 id="customer-address"></h5>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Base Price</th>
+                        <th>Total Price (Inclusive of Tax)</th>
+                    </tr>
+                </thead>
+                <tbody id="data-row">
+                    <tr id="row-{productId}">
+                        <td>{itemName}</td>
+                        <td>{quantity}</td>
+                        <td>{basePrice}</td>
+                        <td>{netPrice}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

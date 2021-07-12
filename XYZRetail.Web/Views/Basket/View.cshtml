@@ -1,0 +1,29 @@
+﻿@model BasketResponseDto 
+<div class="row mt-5" id="bakset">
+    <div id="basket-view">
+        <h2>@Model.CustomerName</h2>
+        <h5>@Model.Email</h5>
+        <h5>@Model.Address</h5>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Base Price</th>
+                    <th>Total Price (Inclusive of Tax)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                <tr>
+                    <td>@item.ItemName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.ItemBasePrice</td>
+                    <td>@item.ItemNetPrice</td>
+                </tr>
+                }                
+            </tbody>
+        </table>
+    </div>
+</div>
